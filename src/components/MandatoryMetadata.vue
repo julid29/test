@@ -2,9 +2,9 @@
 	<el-table :data="mandatoryMetadata" stripe style="width: 100%">
     <el-table-column label="Key" prop="key" >
 		</el-table-column>
-		<el-table-column label="Value" prop="key,value">
+		<el-table-column label="Value" prop="value">
 			<template scope="props">
-				<el-input v-model="mandatoryData("asda", "asdasd)"/>
+				<el-input v-model="props.row.value"/>
       </template>
 		</el-table-column>
 	</el-table>
