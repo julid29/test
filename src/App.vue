@@ -29,14 +29,6 @@ export default {
     keyValuesQuantity() {
       return UploaderService.countKeyValuePairs
     }
-  },
-  watch: {
-    mandatoryData(data) {
-      UploaderService.addToMandatory(data)
-    },
-    additionalData(data) {
-      UploaderService.addToAdditional(data)
-    }
   }
 }
 </script>
