@@ -1,18 +1,18 @@
 <template>
-	<el-form :model="datasetForm" :rules="rules" ref='datasetForm' method='post' enctype='multipart/form-data'>
-		<el-form-item label="Dataset Name" prop="name">
+	<el-form :model="data" :rules="rules" ref='datasetForm' method='post' enctype='multipart/form-data'>
+		<el-form-item label="Dataset Name" prop="datasetName">
 			<el-input type='text' class='form-control-file' ref='datasetNameInput' placeholder='Name'
-				v-model="datasetForm.name"></el-input>
+				v-model="data.datasetName"></el-input>
   	</el-form-item>
 
-		<el-form-item label="Dataset Description" prop="description">
+		<el-form-item label="Dataset Description" prop="datasetDescription">
 			<el-input type='text' class='form-control-file' ref='datasetDescriptionInput' placeholder='Description'
-				v-model="datasetForm.description"></el-input>
+				v-model="data.datasetDescription"></el-input>
   	</el-form-item>
 
-		<el-form-item label="Select Dataset" prop="file">
+		<el-form-item label="Select Dataset" prop="datasetFile">
 			<el-input type='file' class='form-control-file' ref='datasetInput'
-				v-model="datasetForm.file"></el-input>
+				v-model="data.datasetFile"></el-input>
   	</el-form-item>
 
 		<el-button type="success" @click='upload'>Upload</el-button>
@@ -26,36 +26,33 @@ import {UploaderService} from '../service/uploaderService.js'
 export default {
   data() {
     return {
-			datasetForm: {
-				name: '',
-				description: '',
-				file: null
-			},
 			rules: {
-				name: [
+				datasetName: [
 					{ required: true, message: 'Please add a name for the report', trigger: 'blur'},
 					{ min: 5, max: 25, message: 'Length should be 5 to 25', trigger: 'blur'}
 				],
-				description: [
+				datasetDescription: [
 					{ required: true, message: 'A description would be helpful for later search', trigger: 'blur'},
 					{ min: 5, max: 50, message: 'Length should be 5 to 50', trigger: 'blur'}
 				],
-				file: [
+				datasetFile: [
 					{ required: true, message: 'A file is required, otherwise this is nothing my friend', trigger: 'blur'}
 				]
 			}
     };
-  },
+	},
+	computed: {
+		data(){
+			return UploaderService.$data;
+		}
+	},
   methods: {
 		upload () {
 			this.$refs['datasetForm'].validate((valid) => {
 				if (valid) {
-
-					
-
-					alert('submit!')
+					UploaderService.uploadDataset()
 				} else {
-					console.log('error submit!!')
+					console.log('validation errors!!')
 					return false
 				}
 			})
