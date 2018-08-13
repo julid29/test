@@ -23,7 +23,7 @@ export const UploaderService = new Vue({
 			additionalMetadata: [
 				{
 					key: 'firstAdditionalKey',
-					value: ''
+					value: 'some value for it'
 				}
 			]
 		};
@@ -35,7 +35,10 @@ export const UploaderService = new Vue({
 	},
 	methods: {
 		addNewKey () {
-			this.$data.additionalMetadata.push({ key: '', value: ''})
+			this.$data.additionalMetadata.push({
+				key: 'anotherAdditionalKey',
+				value: 'some value for it'
+			})
 		},
 		removeKey (key) {
 			const position = this.$data.additionalMetadata.findIndex(p => {
@@ -43,45 +46,30 @@ export const UploaderService = new Vue({
 			})
 			this.$data.additionalMetadata.splice(position, 1)
 		},
-		addToMandatory (data) {
-			const index = this.$data.mandatoryMetadata.findIndex(p => {
-				return p.key === key
-			})
-
-			if (index === -1) {
-				this.$data.mandatoryMetadata.push(data)
-			} else {
-				this.$data.mandatoryMetadata.splice(indexedDB, 1, data)
-			}
-		},
-		addToAdditional (data) {
-			const index = this.$data.additionalMetadata.findIndex(p => {
-				return p.key === key
-			})
-
-			if (index === -1) {
-				this.$data.additionalMetadata.push(data)
-			} else {
-				this.$data.additionalMetadata.splice(indexedDB, 1, data)
-			}
-		},
 		uploadDataset () {
-			this.checkRequiredData()
-
+			if (this.checkRequiredData()) {
+				console.log('Dataset name: ' + this.$data.datasetName)
+				console.log('Dataset description: ' + this.$data.datasetDescription)
+				console.log('Dataset file name: ' + this.$data.datasetFile.name)
+				console.log('Mandatory metadata: ' + this.$data.mandatoryMetadata.toString())
+				console.log('Additional metadata: ' + this.$data.additionalMetadata.toString())
+			} else {
+				alert('this shit bro!')
+			}
 			// TODO: call clau's services
 		},
 		checkRequiredData () {
-			if (_isEmptyOrSpaces(this.$data.datasetName.datasetName)) {
+			if (this._isEmptyOrSpaces(this.$data.datasetName)) {
 				return false
 			}
-			if (_isEmptyOrSpaces(this.$data.datasetDescription)) {
+			if (this._isEmptyOrSpaces(this.$data.datasetDescription)) {
 				return false
 			}
-			if (_isEmptyOrSpaces(this.$data.datasetFile)) {
+			if (this._isEmptyOrSpaces(this.$data.datasetFile)) {
 				return false
 			}
 			this.$data.mandatoryMetadata.forEach(element => {
-				if (_isEmptyOrSpaces(element))
+				if (this._isEmptyOrSpaces(element.value))
 					return false
 			});
 			return true
