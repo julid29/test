@@ -5,6 +5,7 @@ export const UploaderService = new Vue({
 	    return {
 			datasetName: '',
 			datasetDescription: '',
+			// TODO: later on, file will be encrypted before it is submitted...
 			datasetFile: null,
 			mandatoryMetadata: [
 				{
