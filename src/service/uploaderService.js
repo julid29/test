@@ -49,6 +49,7 @@ export const UploaderService = new Vue({
 		},
 		uploadDataset () {
 			if (this.checkRequiredData()) {
+				// TODO: call clau's services (IPFS, Blockchain, and others)
 				console.log('Dataset name: ' + this.$data.datasetName)
 				console.log('Dataset description: ' + this.$data.datasetDescription)
 				console.log('Dataset file name: ' + this.$data.datasetFile.name)
@@ -57,7 +58,6 @@ export const UploaderService = new Vue({
 			} else {
 				alert('this shit bro!')
 			}
-			// TODO: call clau's services
 		},
 		checkRequiredData () {
 			if (this._isEmptyOrSpaces(this.$data.datasetName)) {
@@ -66,7 +66,7 @@ export const UploaderService = new Vue({
 			if (this._isEmptyOrSpaces(this.$data.datasetDescription)) {
 				return false
 			}
-			if (this._isEmptyOrSpaces(this.$data.datasetFile)) {
+			if (!this.$data.datasetFile) {
 				return false
 			}
 			this.$data.mandatoryMetadata.forEach(element => {
