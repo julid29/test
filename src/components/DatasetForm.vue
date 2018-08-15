@@ -11,8 +11,7 @@
   	</el-form-item>
 
 		<el-form-item label="Select Dataset" prop="datasetFile">
-			<el-input type='file' class='form-control-file' ref='datasetInput'
-				v-model="data.datasetFile"></el-input>
+			<input class='form-control-file' ref="datasetInput" type="file" v-on:change="uploadFile">
   	</el-form-item>
 
 		<el-button type="success" @click='upload'>Upload</el-button>
@@ -35,9 +34,9 @@ export default {
 					{ required: true, message: 'A description would be helpful for later search', trigger: 'blur'},
 					{ min: 5, max: 50, message: 'Length should be 5 to 50', trigger: 'blur'}
 				],
-				datasetFile: [
-					{ required: true, message: 'A file is required, otherwise this is nothing my friend', trigger: 'blur'}
-				]
+				// datasetFile: [
+				// 	{ required: true, message: 'A file is required, otherwise this is nothing my friend', trigger: 'blur'}
+				// ]
 			}
     };
 	},
@@ -47,6 +46,11 @@ export default {
 		}
 	},
   methods: {
+		uploadFile: function(e) {
+			e.preventDefault();
+			var files = this.$refs['datasetInput'].files;
+			UploaderService.$data.datasetFile = files[0];
+		},
 		upload () {
 			this.$refs['datasetForm'].validate((valid) => {
 				if (valid) {
