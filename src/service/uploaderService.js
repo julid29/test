@@ -53,8 +53,14 @@ export const UploaderService = new Vue({
 				console.log('Dataset name: ' + this.$data.datasetName)
 				console.log('Dataset description: ' + this.$data.datasetDescription)
 				console.log('Dataset file name: ' + this.$data.datasetFile.name)
-				console.log('Mandatory metadata: ' + this.$data.mandatoryMetadata.toString())
-				console.log('Additional metadata: ' + this.$data.additionalMetadata.toString())
+				console.log('Mandatory metadata: ')
+				console.log(this.$data.mandatoryMetadata.forEach(function(item, index, array) {
+					console.log('-' + item.key + ': ' + item.value)
+				}))
+				console.log('Additional metadata: ')
+				console.log(this.$data.additionalMetadata.forEach(function(item, index, array) {
+					console.log('-' + item.key + ': ' + item.value)
+				}))
 			} else {
 				alert('this shit bro!')
 			}
