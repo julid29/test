@@ -2,12 +2,12 @@
 	<el-table :data="additionalMetadata" stripe style="width: 100%">
     <el-table-column label="Key" prop="key" >
 			<template scope="props">
-				<el-input :placeholder="props.row.key"/>
+				<el-input v-model="props.row.key" placeholder="firstAdditionalKey"/>
       </template>
 		</el-table-column>
 		<el-table-column label="Value" prop="value">
 			<template scope="props">
-				<el-input :placeholder="props.row.value"/>
+				<el-input v-model="props.row.value" placeholder="some value for it"/>
       </template>
 		</el-table-column>
 		<el-table-column label="Operations" prop="key">

@@ -23,8 +23,8 @@ export const UploaderService = new Vue({
 			],
 			additionalMetadata: [
 				{
-					key: 'firstAdditionalKey',
-					value: 'some value for it'
+					key: '',
+					value: ''
 				}
 			]
 		};
@@ -37,8 +37,8 @@ export const UploaderService = new Vue({
 	methods: {
 		addNewKey () {
 			this.$data.additionalMetadata.push({
-				key: 'anotherAdditionalKey',
-				value: 'some value for it'
+				key: '',
+				value: ''
 			})
 		},
 		removeKey (key) {
