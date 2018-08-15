@@ -3,10 +3,12 @@
     <el-row :gutter="20">
       <el-col :span="12">
         <h1>Uploader Manager</h1>
+        <h2>File</h2>
         <dataset-form></dataset-form>
       </el-col>
       <el-col :span="12">
-        <h1>Dataset Metadata</h1>
+        <br><br><br>
+        <h2>Dataset Metadata</h2>
         <h3>Mandatory Metadata</h3>
         <mandatory-metadata></mandatory-metadata>
         <br>
